@@ -77,7 +77,12 @@ ufw allow ntp
 ```
 
 #####Task: Configure the local timezone to UTC
-######Status: Incomplete
+######Status: Complete
+I set the local timezone to UTC by configuring the tzdata package.
+```
+dpkg-reconfigure tzdata
+```
+I then selected "None of the above" and finally "UTC".
 
 #####Task: Install and configure Apache to serve a Python mod_wsgi application
 ######Status: Incomplete
