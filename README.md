@@ -85,16 +85,52 @@ dpkg-reconfigure tzdata
 I then selected "None of the above" and finally "UTC".
 
 #####Task: Install and configure Apache to serve a Python mod_wsgi application
-######Status: Incomplete
+######Status: Complete
+```
+apt-get update
+apt-get upgrade
+
+apt-get install apache2
+
+apt-get install python-setuptools libapache2-mod-wsgi
+
+service apache2 restart
+```
 
 #####Task: Install and configure PostgreSQL:
-######Status: Incomplete
+######Status: Complete
+```
+apt-get install postgresql
+```
+Login to postgres with :
+```
+sudo -i -u postgres
+```
 
-#####Task: Do not allow remote connections
-######Status: Incomplete
+#####Task: Within postgres do not allow remote connections
+######Status: Complete
+Verified that no remote connections are allowed by inspecting the pg_hba.conf file.
 
-#####Task: Create a new user named catalog that has limited permissions to your catalog application database
-######Status: Incomplete
+This file can be viewed with the following command
+```
+less /etc/postgresql/9.1/main/pg_hba.conf
+```
+
+#####Task: Within postgres create a new user named catalog that has limited permissions to your catalog application database
+######Status: Complete
+```
+sudo su - postgres
+psql
+```
+```
+CREAT ROLE catalog LOGIN;
+```
 
 #####Task: Install git, clone and setup your Catalog App project (from your GitHub repository from earlier in the Nanodegree program) so that it functions correctly when visiting your server’s IP address in a browser. Remember to set this up appropriately so that your .git directory is not publicly accessible via a browser!
 ######Status: Incomplete
+Install git:
+```
+apt-get update
+apt-get install git
+```
+
