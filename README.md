@@ -11,23 +11,38 @@ __Supporting course(s):__
 
 _Note: Course not available at time of completion of project_
 
-__Top Resources__
+####Project Description
+You will take a baseline installation of a Linux distribution on a virtual machine and prepare it to host your web applications, to include installing updates, securing it from a number of attack vectors and installing/configuring web and database servers.
+
+__Resources Used__
+
 Initial setup:
 * https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04
 * https://www.digitalocean.com/community/tutorials/additional-recommended-steps-for-new-ubuntu-14-04-servers
+
 Extra info on creating/managing users:
 * https://www.digitalocean.com/community/tutorials/how-to-add-and-delete-users-on-an-ubuntu-14-04-vps
+
 Installing and using PostgreSQL:
 * https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-14-04
 * https://www.digitalocean.com/community/tutorials/how-to-use-roles-and-manage-grant-permissions-in-postgresql-on-a-vps--2
+* https://www.digitalocean.com/community/tutorials/how-to-secure-postgresql-on-an-ubuntu-vps
 
-####Project Description
-You will take a baseline installation of a Linux distribution on a virtual machine and prepare it to host your web applications, to include installing updates, securing it from a number of attack vectors and installing/configuring web and database servers.
+Apache Configuration
+* https://www.digitalocean.com/community/tutorials/how-to-set-up-apache-virtual-hosts-on-ubuntu-14-04-lts
+
+Installing git
+* https://www.digitalocean.com/community/tutorials/how-to-install-git-on-ubuntu-14-04
+
+Installing Flask
+* https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps
+
 
 Project Overview
 ---------------------------
 ###Setup Details
 IP Address: 52.25.50.188
+
 SSH Port: 2200
 
 __System Details__
@@ -96,6 +111,7 @@ ufw enable
 
 ####Task: Configure the local timezone to UTC
 __Status:__ Complete
+
 I set the local timezone to UTC by configuring the tzdata package.
 ```
 dpkg-reconfigure tzdata
@@ -117,50 +133,48 @@ service apache2 restart
 
 ####Task: Install and configure PostgreSQL:
 __Status:__ Complete
+
 To install PostgreSQL:
 ```
 apt-get update
 apt-get install postgresql postgresql-contrib
 ```
 
-Login to postgres with :
-```
-sudo -i -u postgres
-```
-
-To install necessary dev packages to install psycopg2 for a Flask application:
-```
-apt-get install libpq-dev python-dev
-```
-
 ####Task: Within postgres do not allow remote connections
 __Status:__ Complete
+
 Verified that no remote connections are allowed by inspecting the pg_hba.conf file.
 
 This file can be viewed with the following command
 ```
-less /etc/postgresql/9.1/main/pg_hba.conf
+less /etc/postgresql/9.3/main/pg_hba.conf
 ```
 
 ####Task: Within postgres create a new user named catalog that has limited permissions to your catalog application database
 __Status:__ Complete
+
+Login to postgres with :
 ```
-sudo su - postgres
-psql
+sudo -i -u postgres
 ```
 ```
-CREAT ROLE catalog LOGIN;
+createuser --interactive
+Enter name of role to add: catalog
+Shall the new role be a superuser? (y/n) n
+Shall the new role be allowed to create databases? (y/n) n
+Shall the new role be allowed to create more new roles? (y/n) n
 ```
 
 ####Task: Install git, clone and setup your Catalog App project (from your GitHub repository from earlier in the Nanodegree program) so that it functions correctly when visiting your server’s IP address in a browser. Remember to set this up appropriately so that your .git directory is not publicly accessible via a browser!
 __Status:__ Incomplete
-Install git:
+
+__Install git:__
 ```
 apt-get update
 apt-get install git
 ```
 
-Install python pip package manager:
+__Install python pip package manager:__
 ```
 apt-get update
 apt-get upgrade
@@ -168,10 +182,45 @@ apt-get upgrade
 apt-get install python-pip
 ```
 
-Install Flask and dependencies
-[Followed instruction here](https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps)
+__Install mod_wsgi (may already be installed):__
 ```
-pip install Flask
-pip install --upgrade oauth2client
-pip install SQLAlchemy
+apt-get install libapache2-mod-wsgi
+```
+
+__Install dependencies for psycopg2 package:__
+```
+apt-get install libpq-dev python-dev
+```
+
+Create necessary directories/files for apache2 virtual host and clone project
+to the applicable directory.
+
+/etc/apach2/sites-available/
+
+/var/www/
+
+__Install, setup, launch virtual environment:__
+```
+pip install virtualenv
+virtualenv venv
+source venv/bin/activate
+```
+
+__Clone Appplication__
+
+Navigate to the app directory /var/www/CatalogApp.
+
+Clone the application from GitHub
+```
+git clone git@github.com:joelcolucci/vanillanote.git
+```
+
+Rename the project directory and go to the project directory
+```
+
+```
+
+__Install project dependencies__
+```
+pip install -r requirements.txt
 ```
