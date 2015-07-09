@@ -14,7 +14,7 @@ _Note: Course not available at time of completion of project_
 ####Project Description
 You will take a baseline installation of a Linux distribution on a virtual machine and prepare it to host your web applications, to include installing updates, securing it from a number of attack vectors and installing/configuring web and database servers.
 
-__Resources Used__
+__Primary Resources__
 
 Initial setup:
 * https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04
@@ -169,7 +169,7 @@ Shall the new role be allowed to create more new roles? (y/n) n
 ```
 
 ####Task: Install git, clone and setup your Catalog App project (from your GitHub repository from earlier in the Nanodegree program) so that it functions correctly when visiting your server’s IP address in a browser. Remember to set this up appropriately so that your .git directory is not publicly accessible via a browser!
-__Status:__ Incomplete
+__Status:__ Complete
 
 __Install git:__
 ```
@@ -198,7 +198,9 @@ apt-get install libpq-dev python-dev
 Create necessary directories/files for apache2 virtual host and clone project
 to the applicable directory.
 
-/etc/apach2/sites-available/
+_Apache2 applicable directories_
+
+/etc/apache2/sites-available/
 
 /var/www/
 
