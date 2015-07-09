@@ -41,7 +41,7 @@ Installing Flask
 Project Overview
 ---------------------------
 ###Setup Details
-IP Address: 52.25.50.188
+IP Address: 52.27.139.93
 
 SSH Port: 2200
 
@@ -107,6 +107,9 @@ ufw show added
 
 # Enable the firewall.
 ufw enable
+
+# Reboot
+reboot
 ```
 
 ####Task: Configure the local timezone to UTC
@@ -208,17 +211,14 @@ source venv/bin/activate
 
 __Clone Appplication__
 
-Navigate to the app directory /var/www/CatalogApp.
+Navigate to the app directory /var/www/catalogapp.
 
 Clone the application from GitHub
 ```
-git clone git@github.com:joelcolucci/vanillanote.git
+git clone https://github.com/joelcolucci/vanillanote.git
 ```
 
-Rename the project directory and go to the project directory
-```
-
-```
+Make necessary file naming adjustments to work with apache2.
 
 __Install project dependencies__
 ```
