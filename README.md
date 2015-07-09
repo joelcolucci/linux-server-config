@@ -71,6 +71,18 @@ We can grant the new user the permission to sudo by adding them to the 'sudo' gr
 gpasswd -a grader sudo
 ```
 
+####Task: Remote login of the root user has been disabled
+__Status:__ Complete
+
+In sshd_config file (file path: /etc/ssh/sshd_config) PermitRootLogin set to "no".
+
+Restart ssh to use latest configuration:
+```
+service ssh restart
+```
+
+NOTE: It is a good idea to open another terminal window and verify you can log in as a non root user prior to exiting the original session. You do not want to become locked out!
+
 ####Task: Update all currently installed packages
 __Status:__ Complete
 ```
